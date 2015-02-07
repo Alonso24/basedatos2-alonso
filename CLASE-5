@@ -46,7 +46,7 @@ END;
 3 */ 
 4 
  
-5 create table pelicula (id_pelicula integer, nombre varchar2(120), constraint pk_id_pelicula primary key (id_pelicula)); 
+5 create table pelicula (id_pelicula integer, titulo varchar2(120), sinopsis varchar2(350) constraint pk_id_pelicula primary key (id_pelicula)); 
 6 
  
 7 --Creamos la secuencia correspondiente 
@@ -63,13 +63,13 @@ END;
 16 */ 
 17 
  
-18 CREATE OR REPLACE PROCEDURE GUARDAR_PELICULA(MY_ID OUT INTEGER, MY_NOMBRE IN VARCHAR2) 
+18 CREATE OR REPLACE PROCEDURE GUARDAR_PELICULA(MY_ID OUT INTEGER, MY_TITULO IN VARCHAR2, MY_SINOPSIS IN VARCHAR2) 
 19 AS 
 20   BEGIN 
 21 
  
 22   SELECT SEC_PELICULA.NEXTVAL INTO  MY_ID FROM DUAL; 
-23   INSERT INTO PELICULA(ID_PELICULA, NOMBRE) VALUES(MY_ID, MY_NOMBRE); 
+23   INSERT INTO PELICULA(ID_PELICULA, TITULO, SINOPSIS) VALUES(MY_ID, MY_TITULO, MY_SINOPSIS); 
 24 END; 
 25 / 
 26 
@@ -82,7 +82,7 @@ END;
 32   
 33  VALOR INTEGER; 
 34  BEGIN 
-35  guardar_pelicula(VALOR,'AVATAR'); 
+35  guardar_pelicula(VALOR,'AVATAR','Esta pelicula esta muy buena por que es de aventura y acción'); 
 36  dbms_output.put_line('SE INSERTO CON EXITO'||VALOR); 
 37   
 38  END; 
