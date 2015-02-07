@@ -39,3 +39,51 @@ END;
  /
  
  --https://github.com/curso-basedatos/desktop-basedatos
+
+
+/* 
+2 Creamos la tabla pelicula
+3 */ 
+4 
+ 
+5 create table pelicula (id_pelicula integer, nombre varchar2(120), constraint pk_id_pelicula primary key (id_pelicula)); 
+6 
+ 
+7 --Creamos la secuencia correspondiente 
+8 
+ 
+9 create sequence sec_pelicula 
+10 start with 1 
+11 increment by 1 
+12 nomaxvalue; 
+13 
+ 
+14 /* 
+15 Creamos el procedimiento almacenado que nos enlazar la secuencia con la tabla pelicula 
+16 */ 
+17 
+ 
+18 CREATE OR REPLACE PROCEDURE GUARDAR_PELICULA(MY_ID OUT INTEGER, MY_NOMBRE IN VARCHAR2) 
+19 AS 
+20   BEGIN 
+21 
+ 
+22   SELECT SEC_PELICULA.NEXTVAL INTO  MY_ID FROM DUAL; 
+23   INSERT INTO PELICULA(ID_PELICULA, NOMBRE) VALUES(MY_ID, MY_NOMBRE); 
+24 END; 
+25 / 
+26 
+ 
+27 /* 
+28  AHORA SI A INSERTAR EN EL TABLE PELICULA 
+29  */ 
+30  SET SERVEROUTPUT ON; 
+31  DECLARE 
+32   
+33  VALOR INTEGER; 
+34  BEGIN 
+35  guardar_pelicula(VALOR,'AVATAR'); 
+36  dbms_output.put_line('SE INSERTO CON EXITO'||VALOR); 
+37   
+38  END; 
+39  / 
