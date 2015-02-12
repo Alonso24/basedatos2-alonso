@@ -1,0 +1,33 @@
+Create table empleado (id integer,nombre varchar2(120),sueldo float);
+
+insert into empleado values (1, 'Diana',1400);
+
+select * from empleado;
+
+set serveroutput on;
+
+declare
+
+nuevo_sueldo float;
+
+begin
+
+select sueldo into nuevo_sueldo from empleado;
+dbms_output.put_line('el sueldo seleccionado es'||nuevo_sueldo);
+end;
+/
+
+declare 
+
+ cursor cursor_empleado is select * from empleado;
+
+begin
+
+for puma in cursor_empleado loop
+
+dbms_output.put_line('Mensaje'||puma.nombre);
+
+end loop;
+
+end;
+/
