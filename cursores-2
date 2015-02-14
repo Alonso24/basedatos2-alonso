@@ -1,0 +1,32 @@
+Create table empleado (id integer,nombre varchar2(120),sueldo float);
+
+insert into empleado values (3, 'Valeria',7400);
+
+select * from empleado;
+
+-- 3) USAR UN CURSOR EXPLICITAMENTE PARA ACTUALIZAR LOS SUELDOS DE ACUERDO A LA SIGUIENTE REGLA:
+      -- °SI EL SUELDO ES MAYOR DE 6000 ACTUALIZAR EL VALOR A EL SUELDO ANTERIOR +2000
+         -- °SI EL SUELDO ES MENOR O IGUAL A 6000 ACTUALIZAR EL VALOR A EL SUELDO ANTERIOR +1000
+         
+  SET SERVEROUTPUT ON;
+  
+  declare
+  
+  cursor cursor_actualizar_emp is select * from empleado for update of sueldo; 
+  --(para borrar y actualizar, cuando no es de solo lectura;cuando va a ver un cambio en la tabla)
+  
+  begin
+ 
+ for reg in cursor_actualizar_emp loop 
+ 
+ if reg.sueldo >6000 then
+    update empleado set empleado = reg.sueldo+2000 where current of cursor_actualizar_emp;
+ 
+ else 
+        update empleado set empleado = reg.sueldo+1000 where current of cursor_actualizar_emp;
+
+   end if;
+   
+   end loop;
+   end;
+   /
