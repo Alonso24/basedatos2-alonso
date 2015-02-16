@@ -20,10 +20,10 @@ select * from empleado;
  for reg in cursor_actualizar_emp loop 
  
  if reg.sueldo >6000 then
-    update empleado set empleado = reg.sueldo+2000 where current of cursor_actualizar_emp;
+    update empleado set sueldo = reg.sueldo+2000 where current of cursor_actualizar_emp;
  
  else 
-        update empleado set empleado = reg.sueldo+1000 where current of cursor_actualizar_emp;
+        update empleado set sueldo = reg.sueldo+1000 where current of cursor_actualizar_emp;
 
    end if;
    
