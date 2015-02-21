@@ -1,0 +1,11 @@
+SET serveroutput on;
+
+ BEGIN
+  dbms_output.put_line('CURRENT DATE ES: '|| CURRENT_DATE ); 
+   dbms_output.put_line('CURRENT_TIMESTAMP ES : '||CURRENT_TIMESTAMP ); 
+  dbms_output.put_line('LOCALTIMESTAMP ES : '|| LOCALTIMESTAMP ); 
+  dbms_output.put_line(' SYSDATE ES: '||  SYSDATE ); 
+dbms_output.put_line(' SYSTIMESTAMP ES: '|| SYSTIMESTAMP ); 
+
+END;
+/
