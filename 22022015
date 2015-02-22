@@ -21,7 +21,7 @@ values(my_book_id,my_isbn,my_titulo,my_resumen,my_autor,my_fecha_publicacion,my_
 END;
 /
 
-set serveroutput on;
+set serveroutput on;  -- Error de sintaxis , literal no valida.
 
 declare
 valor integer;
