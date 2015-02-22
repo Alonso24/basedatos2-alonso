@@ -1,4 +1,4 @@
-Enter file contents hereCreate table libros (book_id integer,isbn varchar2(13),titulo varchar2(200),resumen varchar2(2000),autor varchar2(200),fecha_publicacion DATE,num_pag NUMBER, 
+libros (book_id integer,isbn varchar2(13),titulo varchar2(200),resumen varchar2(2000),autor varchar2(200),fecha_publicacion DATE,num_pag NUMBER, 
 constraint pk_book_id primary key (book_id));
 
 create sequence sec_libros
