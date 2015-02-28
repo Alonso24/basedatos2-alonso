@@ -1,0 +1,15 @@
+create table custumer(custumer_id integer,nombre varchar2(80),phone_number varchar2(70),constraint pk_custumer_id primary key (custumer_id));
+
+create table orden(orden_id integer,custumer_id integer,total float,constraint pk_orden_id primary key (orden_id),constraint fk_custumer_id foreign key(custumer_id)
+references custumer(custumer_id));
+
+CREATE SEQUENCE sec_custumer START WITH 1 INCREMENT BY 1 NOMAXVALUE;
+CREATE SEQUENCE sec_orden START WITH 1 INCREMENT BY 1 NOMAXVALUE;
+
+
+CREATE OR REPLACE PROCEDURE guardar_custumer
+(my_custumer_id OUT INTEGER,my_name IN VARCHAR2,my_phone_number IN VARCHAR2) as
+
+
+CREATE OR REPLACE PROCEDURE guardar_orden
+(my_orden_id OUT INTEGER,my_custumer_id IN integer,my_total float) as
