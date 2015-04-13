@@ -1,0 +1,135 @@
+
+
+
+
+CREATE TABLE Catalogo 
+   ( 
+   id_catalogo     INTEGER,
+   tipo_catalogo   varchar2(100), 
+   
+   CONSTRAINT PK_ID_Catalogo PRIMARY KEY (ID_Catalogo), 
+ 
+ 
+   ); 
+ CREATE 
+   TABLE Hombre
+   ( 
+     id_hombre       INTEGER, 
+     prenda VARCHAR2  (400), 
+     descripcion    VARCHAR2 (500),
+     precio  FLOAT(500), 
+     
+    
+     CONSTRAINT PK_Id_hombre PRIMARY KEY (ID_hombre) 
+     
+     CONSTRAINT FK_tipo_catalogo FOREIGN KEY (tipo_catalogo) 
+     REFERENCES Catalogo (tipo_catalogo) 
+ 
+
+   ); 
+    
+   CREATE 
+   TABLE Mujer
+   ( 
+     id_Mujer      INTEGER, 
+     prenda VARCHAR2  (400), 
+     descripcion    VARCHAR2 (500),
+     precio  FLOAT(500), 
+     
+    
+     CONSTRAINT PK_Id_Mujer PRIMARY KEY (ID_Mujer) 
+     
+     CONSTRAINT FK_tipo_catalogo FOREIGN KEY (tipo_catalogo) 
+     REFERENCES Catalogo (tipo_catalogo) 
+ 
+   ); 
+
+CREATE SEQUENCE SEC_Catalogo START WITH 1 INCREMENT BY 1 NOMAXVALUE; 
+CREATE SEQUENCE SEC_Hombre START WITH 1 INCREMENT BY 1 NOMAXVALUE; 
+CREATE SEQUENCE SEC_Mujer START WITH 1 INCREMENT BY 1 NOMAXVALUE; 
+
+CREATE OR REPLACE PROCEDURE GUARDAR_Catalogo
+   ( 
+     MY_ID_Catalogo OUT INTEGER, 
+     MY_tipo_catalogo  IN VARCHAR2, 
+     
+   ) 
+ AS 
+ BEGIN 
+   SELECT SEC_Catalogo.NEXTVAL INTO MY_ID_Catalogo FROM DUAL; 
+   INSERT 
+   INTO Catalogo
+     ( 
+       ID_catalogo, 
+       tipo_catalogo 
+       
+     ) 
+     VALUES 
+     ( 
+     MY_ID_catalogo, 
+     MY_tipo_catalogo 
+     
+     ); 
+ END; 
+ / 
+
+CREATE OR REPLACE PROCEDURE GUARDAR_Hombre 
+   ( 
+     MY_ID_Hombre OUT INTEGER, 
+     MY_prenda  IN VARCHAR2, 
+     MY_descripcion IN VARCHAR2, 
+     MY_precio IN FLOAT
+     
+   ) 
+ AS 
+ BEGIN 
+   SELECT SEC_Tipo.NEXTVAL INTO MY_ID_tipo FROM DUAL; 
+   INSERT 
+   INTO Tipo
+     ( 
+       ID_hombre, 
+       prenda, 
+       descripcion,
+       precio 
+     ) 
+     VALUES 
+     ( 
+     MY_ID_hombre, 
+     MY_prenda, 
+     MY_descripcion, 
+     MY_precio
+     ); 
+ END; 
+ / 
+
+CREATE OR REPLACE PROCEDURE GUARDAR_Mujer
+   ( 
+     MY_ID_Mujer OUT INTEGER, 
+     MY_prenda  IN VARCHAR2, 
+     MY_descripcion IN VARCHAR2, 
+     MY_precio IN FLOAT
+     
+   ) 
+ AS 
+ BEGIN 
+   SELECT SEC_Tipo.NEXTVAL INTO MY_ID_tipo FROM DUAL; 
+   INSERT 
+   INTO Tipo
+     ( 
+       ID_mujer, 
+       prenda, 
+       descripcion,
+       precio 
+     ) 
+     VALUES 
+     ( 
+     MY_ID_mujer, 
+     MY_prenda, 
+     MY_descripcion, 
+     MY_precio
+     ); 
+ END; 
+ / 
+
+
+
