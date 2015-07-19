@@ -1,0 +1,85 @@
+Create table libros (book_id integer,isbn varchar2(13),titulo varchar2(200),resumen varchar2(2000),autor varchar2(200),fecha_publicacion DATE,num_pag NUMBER, 
+constraint pk_book_id primary key (book_id));
+
+create sequence sec_libros
+start with 1 
+increment by 1
+nomaxvalue;
+
+create or replace procedure guardar_libro(my_book_id out integer,my_isbn in varchar2,my_titulo in varchar2,
+my_resumen in varchar2,my_autor in varchar2,my_fecha_publicacion in date,my_num_pag in number) as
+--fecha_actual date := SYSDATE;
+
+BEGIN
+
+select sec_libros.nextval into my_book_id from dual;
+
+insert into libros (book_id,isbn,titulo,resumen,autor,fecha_publicacion,num_pag)
+
+values(my_book_id,my_isbn,my_titulo,my_resumen,my_autor,my_fecha_publicacion,my_num_pag);
+
+END;
+/
+
+set serveroutput on;  -- Error de sintaxis , literal no valida.
+
+declare
+valor integer;
+
+begin
+
+guardar_libro(valor,'9788483835043','TOKIO BLUES (NORWEGIAN WOOD)','Es muy bonito','Murakami, Haruki','2007',' 384');
+dbms_output.put_line('LIBRO GUARDADO'||valor||to_char (SYSDATE,'YYYY/MM/DD'));
+END;
+/
+
+set serveroutput on;
+
+declare
+valor integer;
+
+begin
+
+guardar_libro(valor,'9788433968555 ','LOS GIRASOLES CIEGOS ','dvsf','Mendez, Alberto ','2006',' 160 ');
+dbms_output.put_line('LIBRO GUARDADO'||valor||to_char (SYSDATE,'YYYY/MM/DD'));
+END;
+/
+
+set serveroutput on;
+
+declare
+valor integer;
+
+begin
+
+guardar_libro(valor,'9788433930149 ','LA CONJURA DE LOS NECIOS ','berberrbgshebve',' Toole, John Kennedy','2001','369');
+dbms_output.put_line('LIBRO GUARDADO'||valor||to_char (SYSDATE,'YYYY/MM/DD'));
+END;
+/
+
+set serveroutput on;
+
+declare
+valor integer;
+
+begin
+
+guardar_libro(valor,'9788401341618 ','LA CASA DE LOS ESPÍRITUS ','dfjsnfneonovd','Allende, Isabel ',' 2001 ','528');
+dbms_output.put_line('LIBRO GUARDADO'||valor||to_char (SYSDATE, ' YYYY/MM/DD'));
+END;
+/
+
+set serveroutput on;
+
+declare
+valor integer;
+
+begin
+
+guardar_libro(valor,'9788486478698 ','LAS CENIZAS DE ANGELA ','klsosjshufnfiemsi','McCourt, Frank ',' 1999 ',' 396 ');
+dbms_output.put_line('LIBRO GUARDADO'||valor||to_char (book,SYSDATE, 'YYY/MM/DD'));
+END;
+/
+
+
+select TO_CHAR(sysdate,'YYYY,MM,DD')   from dual;
